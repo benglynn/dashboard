@@ -1,1 +1,12 @@
-<h1>State dashboard</h1>
+<h1 class="heading">State dashboard</h1>
+<ng-container *ngIf="action$|async; let actions; else loading">
+  <div *ngFor="let action of actions" class="action">
+    <div class="action__type">{{ action.type }}</div>
+    <div class="action__active">{{ action.active }}</div>
+    <ng-container [ngSwitch]="action.active">
+        <div *ngSwitchCase="true" class="action__switch--off">Switch off</div>
+        <div *ngSwitchCase="false" class="action__switch--on">Switch on</div>
+    </ng-container>
+  </div>
+</ng-container>
+<ng-template #loading>Loading...</ng-template>
