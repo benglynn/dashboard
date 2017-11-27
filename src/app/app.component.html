@@ -1,11 +1,25 @@
-<h1 class="heading">State dashboard</h1>
+<h1 class="heading">JEPD state dashboard</h1>
 <ng-container *ngIf="action$|async; let actions; else loading">
-  <div *ngFor="let action of actions" class="action">
+  <div
+    *ngFor="let action of actions"
+    class="action"
+    [class.action--active]="action.active"
+    [class.action--inactive]="!action.active">
     <div class="action__type">{{ action.type }}</div>
-    <div class="action__active">{{ action.active }}</div>
+    <div class="action__percentile">Percentile: 0% to 100%</div>
     <ng-container [ngSwitch]="action.active">
-        <div *ngSwitchCase="true" class="action__switch--off">Switch off</div>
-        <div *ngSwitchCase="false" class="action__switch--on">Switch on</div>
+        <div *ngSwitchCase="true" class="action__switch action__switch--off">
+          <button
+            class="button"
+            [disabled]="isRequesting"
+            (click)="updateIsActive(action, false)">Switch off</button>
+        </div>
+        <div *ngSwitchCase="false" class="action__switch action__switch--on">
+            <button
+              class="button"
+              [disabled]="isRequesting"
+              (click)="updateIsActive(action, true)">Switch on</button>
+        </div>
     </ng-container>
   </div>
 </ng-container>
