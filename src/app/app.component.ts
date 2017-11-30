@@ -13,14 +13,16 @@ export class AppComponent {
   isRequesting = false;
 
   constructor( private actionService: ActionService ) {
-    this.action$ = actionService.observable();
+    this.action$ = actionService.actions$.asObservable();
   }
 
   updateIsActive(action: Action, isActive: boolean) {
     this.isRequesting = true;
+    const newAction: Action = { ...action, ...{ active: isActive } };
     this.actionService
-      .updateIsActive(action, isActive)
-      .subscribe(newAction => this.isRequesting = false);
+      .putAction(newAction)
+      .do(_ => this.isRequesting = false)
+      .subscribe();
   }
 
 }
