@@ -1,0 +1,24 @@
+{
+  "actions": [
+    {
+      "type": "initAdaptRoutesAction",
+      "active": false,
+      "id": "5629499534213120"
+    },
+    {
+      "type": "initAdaptServiceAction",
+      "active": false,
+      "id": "5668600916475904"
+    },
+    {
+      "type": "initAdaptResultsViewAction",
+      "active": false,
+      "id": "5707702298738688"
+    },
+    {
+      "type": "activateMenuAdaptationAction",
+      "active": false,
+      "id": "5741031244955648"
+    }
+  ]
+}
